@@ -1,0 +1,78 @@
+---
+title: "Salinity Data"
+author: "Pleuni Pennings"
+date: "4/26/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Download data
+Downloaded to Chapter 2 folder
+
+## 2. Create new RMD file
+Done! 
+
+## 3. Read data into R
+```{r}
+Data <- read.csv("Da")
+
+summary(Data)
+```
+
+## 4. Make sure dates are recognized as dates
+
+```{r}
+#install.packages("chron")
+library(chron)
+
+Data$Date <- as.chron(Data$Date)
+
+summary(Data)
+```
+
+
+
+## 5. Plot date vs salinity
+
+```{r}
+plot(x = Data$Date, y = Data$Salinity, col = "purple") 
+```
+
+
+## 6. Add line for Oct 24th 2021
+
+```{r}
+plot(x = Data$Date, y = Data$Salinity, col = "purple") 
+abline(v = as.chron("10/24/2021"))
+
+```
+
+## ggplot facet_wrap
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+
+myplot <- ggplot(Data, aes(Date, WaterTemp))
+myplot + geom_point(col = "red")+
+  scale_x_chron()+
+  geom_vline(xintercept = as.chron("10/24/2021"), linetype = 2, color = "blue", size = 1)+
+  facet_wrap(~Location)
+
+```
+
+
+## ggplot color for location
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+
+myplot <- ggplot(Data, aes(Date, WaterTemp))
+myplot + geom_point(aes(color = Location), alpha = 0.1) +
+  scale_x_chron()+
+  geom_vline(xintercept = as.chron("10/24/2021"), linetype = 2, color = "blue", size = 1)
+
+```
+
