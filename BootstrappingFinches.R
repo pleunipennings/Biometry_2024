@@ -87,5 +87,5 @@ NumTimesRanDiffEqHighReal = length(which(ListOfRandomDiffWeight>=RealWeightDiffe
 #Add a vertical line to add the RealWeightDifference
 # Is RealWeightDifference in the middle of the histogram? Or far to the right? 
 
-hist(ListOfRandomDiffWeight)
+hist(ListOfRandomDiffWeight, xlim = c(-1.3, 1.3))
 abline (v = RealWeightDifference, col = 2, lwd = 2)
