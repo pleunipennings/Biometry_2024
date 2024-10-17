@@ -42,6 +42,9 @@ AllEle2005TL <- Elephants$Tusk.length..cm.[Elephants$Years.of.sample.collection=
 ########## STEP 7 Run T test 
 t.test(AllEle1966TL, AllEle2005TL)
 
+########## Alternative for STEPs 5, 6, 7
+t.test(Elephants$Tusk.length..cm. ~ Years.of.sample.collection, data = Elephants)
+
 ########## Is the mean different between 1966 and 2005? 
 
 ########## STEP 8 YOUR TASK: REPEAT STEPS 4, 5, 6, 7 but comparing Males vs Females
