@@ -2,6 +2,7 @@
 ########### STEP 1
 ## Set your working directory and read the elephant data
 setwd("/Users/pleunipennings/Documents/GitHub/Biometry_2024")
+library(ggplot2)
 #Read data
 Elephants <- read.csv("elephant_poaching-v2-noid.csv")
 View(Elephants) #check that it looks OK
@@ -25,7 +26,7 @@ ggplot(data = Elephants, aes(x = Tusk.length..cm.)) +
 ggplot(data = Elephants, aes(x = Tusk.length..cm.)) +
   geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
   labs(title = "Distribution of Tusk Lengths", x = "Tusk Length (cm)", y = "Frequency") +
-  facet_wrap(~Years.of.sample.collection, ncol = 1)
+  facet_wrap(~Years.of.sample.collection , ncol = 1)
 
 ##Do you think the mean tusklength is different betwene 1966 and 2005? 
 
@@ -40,10 +41,10 @@ AllEle1966TL <- Elephants$Tusk.length..cm.[Elephants$Years.of.sample.collection=
 AllEle2005TL <- Elephants$Tusk.length..cm.[Elephants$Years.of.sample.collection=="2005-13"]
 
 ########## STEP 7 Run T test 
-t.test(AllEle1966TL, AllEle2005TL)
+t.test(AllEle1966TL, AllEle2005TL, var.equal = TRUE)
 
 ########## Alternative for STEPs 5, 6, 7
-t.test(Elephants$Tusk.length..cm. ~ Years.of.sample.collection, data = Elephants)
+t.test(Tusk.length..cm. ~ Years.of.sample.collection, data = Elephants)
 
 ########## Is the mean different between 1966 and 2005? 
 
